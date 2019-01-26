@@ -1,0 +1,9 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t kruart/docker-react-test -f Dockerfile.dev .
+
+script:
+  - docker run kruart/docker-react-test npm run test -- --coverage
