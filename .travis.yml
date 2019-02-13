@@ -7,3 +7,16 @@ before_install:
 
 script:
   - docker run kruart/docker-react-test npm run test -- --coverage
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-west-2"
+  app: "docker-react-test"
+  env: "DockerReactTest-env"
+  bucket_name: "elasticbeanstalk-us-west-2-319212454525"
+  bucket_path: "docker-react-test"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: $AWS_SECRET_KEY
